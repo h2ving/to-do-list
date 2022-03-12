@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>User Registration</title>
+</head>
+<body>
+    <h1>New User Registration</h1>
+    <form action="#" th:object="${user}" th:action="@{/user/registration}" method="post">
+        <div>
+            <label th:text="Name"></label>
+            <input th:field="*{name}"/>
+            <p th:each="error : ${#fields.errors('name')}"
+               th:text="${error}">Validation error</p>
+        </div>
+        <div>
+            <label th:text="Email"></label>
+            <input th:field="*{email}"/>
+            <p th:each="error : ${#fields.errors('email')}"
+               th:text="${error}">Validation error</p>
+        </div>
+            <label th:text="Password"></label>
+            <input th:field="*{password}"/>
+            <p th:each="error : ${#fields.errors('password')}"
+               th:text="${error}">Validation error</p>
+        <div>
+            <label th:text="Confirm"></label>
+            <input th:field="*{matchingPassword}"/>
+            <p th:each="error : ${#fields.errors('matchingPassword')}"
+               th:text="${error}">Validation error</p>
+        </div>
+        <button type="submit" th:field="Submit">Submit</button>
+    </form>
+
+<a th:href="@{/user/login}" th:text="Login">Login</a>
+</body>
+</html>

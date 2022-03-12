@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Users Login</title>
+</head>
+<body>
+<h1>User Login</h1>
+    <form name="f" action="login" th:object="${user}" th:action="@{/user/login}" method="post">
+        <div>
+            <label th:text="Email"></label>
+            <input th:field="*{email}" type="text" name="username"/>
+            <p th:each="error : ${#fields.errors('email')}"
+               th:text="${error}">Validation error</p>
+        </div>
+        <label th:text="Password"></label>
+        <input th:field="*{password}" type="password" name="password"/>
+        <p th:each="error : ${#fields.errors('password')}"
+           th:text="${error}">Validation error</p>
+
+        <div th:if="${#fields.hasAnyErrors()}">
+            <ul>
+                <li th:each="err : ${#fields.allErrors()}" th:text="${err}" />
+            </ul>
+        </div>
+        <button type="submit" th:field="Submit">Submit</button>
+    </form>
+</body>
+</html>
